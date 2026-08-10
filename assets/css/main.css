@@ -244,6 +244,13 @@ button:focus-visible {
 
 .block p + p { margin-top: 1rem; }
 
+/* hairline + breathing room before a non-first group-label */
+.block p:not(.eyebrow):not(.group-label) + .group-label {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
 /* Lead-in phrases that open a paragraph, e.g. each past-research topic. */
 .block p strong {
   color: var(--accent);

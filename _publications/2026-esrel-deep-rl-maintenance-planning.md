@@ -6,7 +6,7 @@ year: 2026
 order: 60
 type: "conference"
 status: "published"
-doi: "10.3850/ESREL2026061419_esrel26-p26104-cd"
-pdf: ""
+doi: ""
+pdf: "https://rpsonline.com.sg/proceedings/esrel2026/pdf/esrel26-p26104.pdf"
 abstract: ""
 ---

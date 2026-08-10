@@ -11,13 +11,13 @@
 {% assign has_pdf = false %}{% if pub.pdf and pub.pdf != "" %}{% assign has_pdf = true %}{% endif %}
 <li>
   <p class="entry-tag">{{ pub.year }}{% unless implied_statuses contains pub.status %} · {{ pub.status | upcase }}{% endunless %}</p>
-  <h3><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
+  <h3>{{ pub.title }}</h3>
   <p class="entry-meta">{{ pub.authors }}</p>
   <p class="entry-meta entry-venue">{{ pub.venue }}</p>
   {% if has_doi or has_pdf %}
   <p class="entry-links">
-    {% if has_doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
-    {% if has_pdf %}<a href="{{ pub.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
+    {% if has_doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">https://doi.org/{{ pub.doi }}</a>{% endif %}
+    {% if has_pdf %}<a href="{{ pub.pdf }}" target="_blank" rel="noopener">{{ pub.pdf }}</a>{% endif %}
   </p>
   {% endif %}
 </li>
