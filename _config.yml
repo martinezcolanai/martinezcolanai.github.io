@@ -1,0 +1,46 @@
+title: "Andrés Ignacio Martínez Colán"
+description: "Research on population-based structural reliability assessment."
+url: "https://martinezcolanai.github.io"
+baseurl: ""
+
+author:
+  name: "Andrés Ignacio Martínez Colán"
+  email: "andres.martinezcolan@gmail.com"
+  github: "martinezcolanai"
+  linkedin: "https://www.linkedin.com/in/andresmartinezc/"
+  scholar: "https://scholar.google.com/citations?user=bWru6WEAAAAJ&hl=en"
+  orcid: "https://orcid.org/0000-0003-4089-964X"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+collections:
+  publications:
+    output: true
+    permalink: /publications/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "publications"
+    values:
+      layout: "publication"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CONTENT-GUIDE.md
+  - vendor
+  - node_modules

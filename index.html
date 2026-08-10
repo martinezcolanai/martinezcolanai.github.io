@@ -1,0 +1,89 @@
+---
+layout: default
+title: Home
+description: "Andrés Ignacio Martínez Colán — PhD research on population-based structural reliability assessment, ETH Zürich / TNO."
+---
+
+<section class="block bio" id="home">
+  <div class="bio-text">
+    <p class="eyebrow">Bio</p>
+    <p>I am a structural engineer and researcher. I studied civil engineering at the Pontificia Universidad Católica del Perú and practiced as a structural engineer for five years before moving to the Netherlands, where I completed an MSc in Structural Engineering at Delft University of Technology (cum laude).</p>
+    <p>I now work as a researcher at TNO in the Netherlands, and I am pursuing a PhD at ETH Zürich, sponsored by TNO, on the structural safety of populations of similar buildings.</p>
+  </div>
+  <div class="bio-photo">
+    <img src="{{ '/assets/img/portrait-placeholder.svg' | relative_url }}" alt="Portrait of {{ site.author.name }}">
+  </div>
+</section>
+
+<section class="block" id="education">
+  <p class="eyebrow">Education &amp; experience</p>
+  <ul class="timeline">
+    <li>
+      <span class="timeline-date">2022 &ndash; present</span>
+      <span class="timeline-body"><strong>PhD Candidate</strong>, ETH Zürich</span>
+    </li>
+    <li>
+      <span class="timeline-date">2022 &ndash; present</span>
+      <span class="timeline-body"><strong>Researcher</strong>, TNO</span>
+    </li>
+    <li>
+      <span class="timeline-date">2020 &ndash; 2022</span>
+      <span class="timeline-body"><strong>MSc Structural Engineering</strong>, Delft University of Technology</span>
+    </li>
+    <li>
+      <span class="timeline-date">2009 &ndash; 2014</span>
+      <span class="timeline-body"><strong>BSc Civil Engineering</strong>, Pontificia Universidad Católica del Perú</span>
+    </li>
+  </ul>
+</section>
+
+<section class="block" id="research">
+  <p class="eyebrow">Current research</p>
+  <h2>Population-based structural reliability</h2>
+  <p>My PhD develops methods for assessing the structural safety of buildings, not one building at a time, but across whole populations of them. Conventional safety checks treat each building as a unique, isolated object, even though buildings that share a structural type, materials, and loading environment also tend to share how they behave and how they fail.</p>
+  <p>My research treats such similar buildings as a group, so that the sparse information available for any single one of them (its age and survival history, an inspection, monitoring data, a load test) can be pooled and transferred across the population to sharpen the reliability estimate for all of them. The work combines mechanical (finite element) modelling with Bayesian inference, and uses timber buildings as its main case studies.</p>
+  <p>The PhD is supervised by Eleni Chatzi at ETH Zürich and Raphaël Steenbergen at TNO.</p>
+</section>
+
+<section class="block" id="past-research">
+  <p class="eyebrow">Past research</p>
+  <ul class="entry-list plain">
+    <li>
+      <h3>System-level building reliability</h3>
+      <p>Modelling how an entire structural system, rather than a single component, reaches failure, for example a ten-storey frame assessed for first yielding, general yielding, and plastic collapse.</p>
+    </li>
+    <li>
+      <h3>Probabilistic assessment of timber elements</h3>
+      <p>Reliability analysis of timber connections and glulam beams from existing laboratory data, showing that Eurocode resistance estimates are substantially conservative.</p>
+    </li>
+    <li>
+      <h3>Efficient Bayesian updating</h3>
+      <p>Reliability updating with amortized Bayesian inference, building on the progression from MCMC to variational to amortized methods, demonstrated on a single structure.</p>
+    </li>
+    <li>
+      <h3>Vibration-based monitoring of high-rise buildings</h3>
+      <p>Operational modal analysis (OMA) of Dutch high-rises within the HiViBe consortium.</p>
+    </li>
+    <li>
+      <h3>Reliability updating from operational evidence</h3>
+      <p>Using a building's track record, through Bayesian survival analysis, and proof load tests to update reliability estimates.</p>
+    </li>
+  </ul>
+</section>
+
+<section class="block" id="publications">
+  <p class="eyebrow">Publications</p>
+  {% assign items = site.publications | sort: 'year' | reverse %}
+  <ul class="entry-list linked">
+    {% for pub in items %}
+    <li>
+      <a href="{{ pub.url | relative_url }}">
+        <p class="entry-tag">{{ pub.year }} / {{ pub.type | upcase }}{% if pub.status %} · {{ pub.status | upcase }}{% endif %}</p>
+        <h3>{{ pub.title }}</h3>
+        <p class="entry-meta">{{ pub.authors }}</p>
+        <p class="entry-meta entry-venue">{{ pub.venue }}</p>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

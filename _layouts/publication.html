@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<a class="back-link" href="{{ '/#publications' | relative_url }}">&larr; Publications</a>
+
+<article class="entry-full">
+  <p class="eyebrow">{{ page.year }} / {{ page.type | upcase }}{% if page.status %} · {{ page.status | upcase }}{% endif %}</p>
+  <h1>{{ page.title }}</h1>
+  <p class="entry-authors">{{ page.authors }}</p>
+  <p class="entry-venue">{{ page.venue }}</p>
+
+  {% if page.abstract %}
+  <p class="entry-abstract">{{ page.abstract }}</p>
+  {% endif %}
+
+  {{ content }}
+
+  <p class="entry-actions">
+    {% if page.pdf %}<a href="{{ page.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
+    {% if page.doi %}<a href="https://doi.org/{{ page.doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
+  </p>
+</article>
