@@ -1,22 +1,45 @@
 ---
 layout: default
 ---
+{% comment %}
+  A talk belongs to the Talks section, so send it back there rather than to
+  Publications.
+{% endcomment %}
+{% if page.type == 'presentation' %}
+<a class="back-link" href="{{ '/#talks' | relative_url }}">&larr; Talks</a>
+{% else %}
 <a class="back-link" href="{{ '/#publications' | relative_url }}">&larr; Publications</a>
+{% endif %}
+
+{% comment %}
+  Standing alone, this page has no group heading above it, so unlike the list
+  the tag still needs to say what kind of work this is.
+{% endcomment %}
+{% assign type_label = page.type | upcase %}
+{% if page.type == 'journal' %}{% assign type_label = "JOURNAL ARTICLE" %}{% endif %}
+{% if page.type == 'conference' %}{% assign type_label = "CONFERENCE PAPER" %}{% endif %}
+{% if page.type == 'presentation' %}{% assign type_label = "TALK" %}{% endif %}
+{% assign implied_statuses = "published,presented" | split: "," %}
+
+{% assign has_doi = false %}{% if page.doi and page.doi != "" %}{% assign has_doi = true %}{% endif %}
+{% assign has_pdf = false %}{% if page.pdf and page.pdf != "" %}{% assign has_pdf = true %}{% endif %}
 
 <article class="entry-full">
-  <p class="eyebrow">{{ page.year }} / {{ page.type | upcase }}{% if page.status %} · {{ page.status | upcase }}{% endif %}</p>
+  <p class="eyebrow">{{ page.year }} / {{ type_label }}{% unless implied_statuses contains page.status %} · {{ page.status | upcase }}{% endunless %}</p>
   <h1>{{ page.title }}</h1>
   <p class="entry-authors">{{ page.authors }}</p>
   <p class="entry-venue">{{ page.venue }}</p>
 
-  {% if page.abstract %}
+  {% if page.abstract and page.abstract != "" %}
   <p class="entry-abstract">{{ page.abstract }}</p>
   {% endif %}
 
   {{ content }}
 
+  {% if has_doi or has_pdf %}
   <p class="entry-actions">
-    {% if page.pdf %}<a href="{{ page.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
-    {% if page.doi %}<a href="https://doi.org/{{ page.doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
+    {% if has_doi %}<a href="https://doi.org/{{ page.doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
+    {% if has_pdf %}<a href="{{ page.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
   </p>
+  {% endif %}
 </article>

@@ -1,0 +1,23 @@
+{% assign pub = include.pub %}
+{% comment %}
+  The group heading already says what type an entry is, so the tag carries only
+  the year — plus the status, but only when the work is not yet out.
+{% endcomment %}
+{% assign implied_statuses = "published,presented" | split: "," %}
+{% comment %}
+  Liquid treats "" as truthy and a missing key as nil, so both are tested.
+{% endcomment %}
+{% assign has_doi = false %}{% if pub.doi and pub.doi != "" %}{% assign has_doi = true %}{% endif %}
+{% assign has_pdf = false %}{% if pub.pdf and pub.pdf != "" %}{% assign has_pdf = true %}{% endif %}
+<li>
+  <p class="entry-tag">{{ pub.year }}{% unless implied_statuses contains pub.status %} · {{ pub.status | upcase }}{% endunless %}</p>
+  <h3><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
+  <p class="entry-meta">{{ pub.authors }}</p>
+  <p class="entry-meta entry-venue">{{ pub.venue }}</p>
+  {% if has_doi or has_pdf %}
+  <p class="entry-links">
+    {% if has_doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">DOI</a>{% endif %}
+    {% if has_pdf %}<a href="{{ pub.pdf }}" target="_blank" rel="noopener">PDF</a>{% endif %}
+  </p>
+  {% endif %}
+</li>

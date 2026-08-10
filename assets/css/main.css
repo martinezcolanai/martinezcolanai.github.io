@@ -133,12 +133,18 @@ button:focus-visible {
 }
 
 .nav a {
+  position: relative;
   color: var(--text-muted);
   width: fit-content;
 }
 
+/* The slash hangs outside the link box so the labels themselves align with the
+   name and role above. Positioning it rather than padding keeps the alignment
+   exact, independent of the font's advance width and letter-spacing. */
 .nav a::before {
-  content: "/ ";
+  content: "/";
+  position: absolute;
+  right: calc(100% + 0.45em);
   color: var(--border);
 }
 
@@ -197,7 +203,8 @@ button:focus-visible {
 .id-email[hidden] { display: none; }
 
 @media (max-width: 860px) {
-  .nav { flex-direction: row; gap: 1.25rem; }
+  /* Wraps rather than overflowing once the row runs out of width. */
+  .nav { flex-direction: row; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 }
 
 /* ---------------------------------------------------------------
@@ -236,6 +243,12 @@ button:focus-visible {
 }
 
 .block p + p { margin-top: 1rem; }
+
+/* Lead-in phrases that open a paragraph, e.g. each past-research topic. */
+.block p strong {
+  color: var(--accent);
+  font-weight: 600;
+}
 
 /* ---------------------------------------------------------------
    Bio with portrait
@@ -309,6 +322,27 @@ button:focus-visible {
 }
 
 /* ---------------------------------------------------------------
+   Publication groups
+
+   Entries are already divided by hairlines, so a rule here would read as
+   just another entry break. The group boundary is whitespace instead, and
+   the label is the brightest small text in the column — brighter than both
+   the grey section header above it and the muted entry tags below.
+--------------------------------------------------------------- */
+.pub-group + .pub-group {
+  margin-top: 3.25rem;
+}
+
+.group-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+}
+
+/* ---------------------------------------------------------------
    Linked entry list (publications)
 --------------------------------------------------------------- */
 .entry-list.linked {
@@ -322,12 +356,11 @@ button:focus-visible {
 
 .entry-list.linked li:first-child { border-top: none; }
 
-.entry-list.linked a {
-  display: block;
+.entry-list.linked li {
   padding: 1.4rem 0;
 }
 
-.entry-list.linked li:first-child a { padding-top: 0; }
+.entry-list.linked li:first-child { padding-top: 0; }
 
 .entry-tag {
   font-family: var(--font-mono);
@@ -343,12 +376,42 @@ button:focus-visible {
   color: var(--accent);
 }
 
+/* Titles carry a faint underline so they read as links without colour. */
+.entry-list.linked h3 a {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.3);
+  text-underline-offset: 4px;
+}
+
+.entry-list.linked h3 a:hover {
+  text-decoration-color: var(--accent);
+}
+
 .entry-meta {
   font-size: 0.88rem;
   color: var(--text-muted);
 }
 
-.entry-list.linked a:hover h3 { text-decoration: underline; }
+.entry-list .entry-venue { margin-bottom: 0; }
+
+.entry-links {
+  margin-top: 0.7rem;
+  display: flex;
+  gap: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.entry-links a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 4px;
+}
+
+.entry-links a:hover { text-decoration-color: var(--accent); }
 
 /* ---------------------------------------------------------------
    Single entry page (publication)
@@ -362,6 +425,17 @@ button:focus-visible {
 }
 
 .back-link:hover { color: var(--accent); }
+
+/* On an entry page the eyebrow is metadata, not a section header, so it drops
+   back to the same small mono treatment used by tags in the list. */
+.entry-full .eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+}
 
 .entry-full h1 {
   font-family: var(--font-display);
@@ -400,5 +474,11 @@ button:focus-visible {
   text-transform: uppercase;
 }
 
-.entry-actions a { color: var(--accent); }
-.entry-actions a:hover { text-decoration: underline; }
+.entry-actions a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.45);
+  text-underline-offset: 4px;
+}
+
+.entry-actions a:hover { text-decoration-color: var(--accent); }
