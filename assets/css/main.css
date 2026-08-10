@@ -261,21 +261,18 @@ button:focus-visible {
    Bio with portrait
 --------------------------------------------------------------- */
 .bio {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 165px;
-  gap: 2.5rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .bio-photo img {
-  width: 100%;
-  filter: grayscale(100%) contrast(1.15);
-}
-
-@media (max-width: 600px) {
-  .bio { grid-template-columns: 1fr; }
-  .bio-photo { order: -1; }
-  .bio-photo img { width: 140px; }
+  width: 250px;
+  height: 250px;
+  display: block;
+  object-fit: cover;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 65%, transparent 70%);
+  mask-image: radial-gradient(circle at 50% 50%, black 65%, transparent 70%);
 }
 
 /* ---------------------------------------------------------------
