@@ -105,7 +105,7 @@ button:focus-visible {
   display: block;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(2.6rem, 4.2vw, 3.6rem);
+  font-size: clamp(2.0rem, 3.4vw, 3.0rem);
   /* Accented caps (Í, É) rise ~1.0em above the baseline, so leading below
      ~1.0 makes them collide with the line above. */
   line-height: 1.06;
@@ -257,6 +257,18 @@ button:focus-visible {
   font-weight: 600;
 }
 
+.bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+.bullet-list li::marker {
+  color: var(--accent);
+}
+
 /* ---------------------------------------------------------------
    Bio with portrait
 --------------------------------------------------------------- */
@@ -328,13 +340,15 @@ button:focus-visible {
 /* ---------------------------------------------------------------
    Publication groups
 
-   Entries are already divided by hairlines, so a rule here would read as
-   just another entry break. The group boundary is whitespace instead, and
-   the label is the brightest small text in the column — brighter than both
-   the grey section header above it and the muted entry tags below.
+   The label is the brightest small text in the column — brighter than both
+   the grey section header above it and the muted entry tags below — but
+   still needs a hairline to mark the group boundary, matching the
+   treatment used before a non-first group-label elsewhere in the page.
 --------------------------------------------------------------- */
 .pub-group + .pub-group {
-  margin-top: 3.25rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
 }
 
 .group-label {
