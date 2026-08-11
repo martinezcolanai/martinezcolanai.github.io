@@ -261,12 +261,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-left: 1.2em;
-  list-style: disc;
-}
-
-.bullet-list li::marker {
-  color: var(--accent);
+  padding-left: 0;
+  list-style: none;
 }
 
 /* ---------------------------------------------------------------
